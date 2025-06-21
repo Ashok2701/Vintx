@@ -1,48 +1,48 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import "@uploadthing/react/styles.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import Navbar from "@/components/shared/Navbar";
-import CategoryMenu from "@/components/shared/CategoryMenu";
-import { Toaster } from 'sonner';
+import { Toaster } from "sonner";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Vintx - Curate your closet.Sustain your style ",
-  description: "Application",
+  title: "VintX - Your Fashion Marketplace",
+  description: "Buy and sell pre-loved fashion items. Sustainable shopping made easy.",
+  keywords: ["fashion", "marketplace", "second-hand", "sustainable", "clothing"],
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <ClerkProvider
       publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
       appearance={{
         variables: {
-          colorPrimary: "#0f766e",
+          colorPrimary: "#09c5a3",
+          colorText: "#0a0a0a",
+        },
+        elements: {
+          formButtonPrimary: "bg-primary hover:bg-primary/90",
+          card: "shadow-lg border-0",
         },
       }}
     >
       <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          <Navbar />
-          <CategoryMenu />
-          {children}
+        <body className={inter.className}>
+          <div className="min-h-screen flex flex-col">
+            <Navbar />
+            <main className="flex-1">
+              {children}
+            </main>
+            <Footer />
+          </div>
           <Toaster position="top-right" richColors />
         </body>
       </html>
