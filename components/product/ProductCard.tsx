@@ -10,13 +10,21 @@ interface Product {
 }
 
 export default function ProductCard({ product }: { product: Product }) {
-  const firstImage = product.images?.[0];
+  const firstImage = product.images?.[0] || "https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg";
 
   return (
     <Link href={`/product/${product.id}`}>
       <Card className="hover:shadow-md transition-shadow duration-200">
         <CardHeader className="p-0">
-          
+          <div className="relative w-full h-48">
+            <Image
+              src={firstImage}
+              alt={product.name}
+              fill
+              className="object-cover rounded-t-lg"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+            />
+          </div>
         </CardHeader>
 
         <CardContent className="p-4">
@@ -24,7 +32,7 @@ export default function ProductCard({ product }: { product: Product }) {
         </CardContent>
 
         <CardFooter className="px-4 pb-4">
-          <span className="text-teal-700 font-medium">${product.price}</span>
+          <span className="text-teal-700 font-medium">₹{product.price}</span>
         </CardFooter>
       </Card>
     </Link>
