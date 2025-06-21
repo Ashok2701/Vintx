@@ -12,10 +12,8 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // Ensure proper server configuration
-  experimental: {
-    serverComponentsExternalPackages: ['@prisma/client'],
-  },
+  // Updated configuration for Next.js 15
+  serverExternalPackages: ['@prisma/client'],
   // Fix for development server
   async rewrites() {
     return [];

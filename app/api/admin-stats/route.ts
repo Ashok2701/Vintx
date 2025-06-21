@@ -9,7 +9,7 @@ export async function GET() {
   ]);
 
   const sales = await prisma.order.aggregate({
-    _sum: { price: true },
+    _sum: { totalAmount: true },
   });
 
   // In future, count only "in transit" orders for shipments
@@ -21,7 +21,7 @@ export async function GET() {
     users,
     orders,
     products,
-    sales: sales._sum.price || 0,
+    sales: sales._sum.totalAmount || 0,
     shipments,
   });
 }
