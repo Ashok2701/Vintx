@@ -1,13 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   images: {
-    domains: ["utfs.io"],
+    domains: ["utfs.io", "images.pexels.com"],
   },
-  eslint : {
-        ignoreDuringBuilds: true,
-  }
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  env: {
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
+  },
 };
 
 export default nextConfig;
