@@ -3,6 +3,9 @@ import { auth } from "@clerk/nextjs/server";
 import ProductCard from "@/components/product/ProductCard";
 import HomeContent2 from "@/components/home/HomePage";
 
+// Force dynamic rendering to ensure auth() has access to request context
+export const dynamic = "force-dynamic";
+
 interface Product {
   id: string;
   name: string;
